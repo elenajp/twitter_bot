@@ -37,6 +37,13 @@ def store_id(id, file):
 last_seen_id = retrieve_id(FILE)
 mentions = api.mentions_timeline(last_seen_id, tweet_mode='extended')
 
+for mention in reversed(mentions):
+    if 'shark' in mention.full_text:
+        last_seen_id = mention.id
+        store_id(last_seen_id, FILE)
+        api.update_status('@'+mention.user.screen_name +
+                          'Sharks are friends not soup!')
+
 key_words = ['shark', 'sharks', 'shark week', 'sharkweek']
 msgs = [
     'Being left-handed kills more people than sharks! 2, 500 people die each year after using right-handed items incorrectly. Sorry, lefties.',
