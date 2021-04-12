@@ -9,9 +9,11 @@ from keys import keys
 API_KEY = keys['api_key']
 API_SECRET_KEY = keys['api_secret_key']
 BEARER_TOKEN = keys['bearer_token']
+ACCESS_TOKEN = keys['access_token']
+ACCESS_TOKEN_SECRET = keys['access_token_secret']
 
-auth = tweepy.OAuthHandler()
-auth.set_access_token()
+auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
 key_words = ['shark', 'sharks', 'shark week', 'sharkweek']
