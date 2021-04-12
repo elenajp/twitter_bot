@@ -23,17 +23,18 @@ FILE = 'id.txt'
 
 def retrieve_id(file):
     f_read = open(file)  # opens the file
-    last_seen_id = int(f_read.read().script())  # grabs the id in the file
-    f_read.close()  # closes the file
+    last_seen_id = int(f_read.read().strip())  # grabs the id in the file
+    f_read.close()
+    print(last_seen_id)  # closes the file
     return last_seen_id
 
 
 retrieve_id(FILE)
 
 
-mentions = api.mentions_timeline()
-for mention in mentions:
-    print(mention.id)
+# mentions = api.mentions_timeline()
+# for mention in mentions:
+#     print(mention.id)
 
 key_words = ['shark', 'sharks', 'shark week', 'sharkweek']
 msgs = [
