@@ -18,23 +18,24 @@ api = tweepy.API(auth)
 
 FILE = 'id.txt'
 
-# retrieve_id grabs id from text file used it, grab last id and save it in text file
-
 
 def retrieve_id(file):
-    f_read = open(file)  # opens the file
+    f_read = open(file, 'r')  # opens the file
     last_seen_id = int(f_read.read().strip())  # grabs the id in the file
     f_read.close()
     print(last_seen_id)  # closes the file
     return last_seen_id
 
 
-retrieve_id(FILE)
+def store_id(id, file):
+    f_write = open(file, 'w')
+    f_write.write(str(id))
+    f_write.close()
+    return
 
 
-# mentions = api.mentions_timeline()
-# for mention in mentions:
-#     print(mention.id)
+last_seen_id = retrieve_id(FILE)
+mentions = api.mentions_timeline(last_seen_id, tweet_mode='extended')
 
 key_words = ['shark', 'sharks', 'shark week', 'sharkweek']
 msgs = [
