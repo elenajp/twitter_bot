@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
+import random
+
 import tweepy
 
 from keys import keys
+from messages import msgs
 
 API_KEY = keys['API_KEY']
 API_SECRET_KEY = keys['API_SECRET_KEY']
@@ -9,6 +12,10 @@ ACCESS_TOKEN = keys['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = keys['ACCESS_TOKEN_SECRET']
 
 keywords = ['#shark', '#sharks', '#sharkweek', 'sharks', 'shark', 'sharkweek']
+
+
+random_msg = random.choice(msgs)
+print(random_msg)
 
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -39,12 +46,6 @@ for mention in reversed(mentions):
         if i in mention.full_text:
             last_Seen_id = mention.id
             store_id(last_Seen_id, FILE)
-            api.update_status('@'+mention.user.screen_name + 'YAY', mention.id)
+            api.update_status('@'+mention.user.screen_name +
+                              f'{msgs}', mention.id)
             print('Replied to @' + mention.user.screen_name)
-
-
-msgs = [
-    'Being left-handed kills more people than sharks! 2, 500 people die each year after using right-handed items incorrectly. Sorry, lefties.',
-    'Armed toddlers kill more people than sharks! 21 people die each year from toddlers wielding a gun they found in an unlocked cabinet.',
-    'Elephants kill more people than sharks! Those cute, cuddly animals that everyone adores? Yeah, they kill 600 people a year. Tough love.'
-]
