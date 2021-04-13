@@ -8,7 +8,7 @@ API_SECRET_KEY = keys['API_SECRET_KEY']
 ACCESS_TOKEN = keys['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = keys['ACCESS_TOKEN_SECRET']
 
-key_words = ['#shark', '#sharks', '#sharkweek', 'sharks', 'shark', 'sharkweek']
+keywords = ['#shark', '#sharks', '#sharkweek', 'sharks', 'shark', 'sharkweek']
 
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -35,7 +35,7 @@ last_Seen_id = retrieve_id(FILE)
 mentions = api.mentions_timeline(last_Seen_id, tweet_mode='extended')
 
 for mention in reversed(mentions):
-    for i in key_words:
+    for i in keywords:
         if i in mention.full_text:
             last_Seen_id = mention.id
             store_id(last_Seen_id, FILE)
