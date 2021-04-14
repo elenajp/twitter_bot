@@ -36,5 +36,6 @@ msgs = [
     "Since the 1990s, protection for great whites has been established in many parts of the world including California, Oz, Nz and S.Africa.",
     "The movie Jaws is Responsible For Killing A Colossal Amount of Sharks",
     "Based on fossil scales found, scientists hypothesize sharks first appeared in the ocean around 455 million years ago.",
-    "Shark skin feels like sandpaper as it is made up of tiny teeth-like structures called placoid scales, also known as dermal denticles."
+    "Shark skin feels like sandpaper as it is made up of tiny teeth-like structures called placoid scales, also known as dermal denticles.",
+    "Basking sharks are the world's second largest fish, growing as long as 32 feet and weighing more than five tons."
 ]
