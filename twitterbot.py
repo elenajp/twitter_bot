@@ -15,7 +15,6 @@ keywords = ['#shark', '#sharks', '#sharkweek', 'sharks', 'shark', 'sharkweek']
 
 
 random_msg = random.choice(msgs)
-print(random_msg)
 
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -47,5 +46,6 @@ for mention in reversed(mentions):
             last_Seen_id = mention.id
             store_id(last_Seen_id, FILE)
             api.update_status('@'+mention.user.screen_name +
-                              f'{msgs}', mention.id)
+                              f'{random_msg}', mention.id)
             print('Replied to @' + mention.user.screen_name)
+            print(random_msg)

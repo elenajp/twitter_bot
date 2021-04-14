@@ -7,7 +7,7 @@ msgs = [
     "Volcanoes kill more people than sharks! Volcanoes kill, on average, 762 people a year.",
     "Champagne corks kill more people than sharks! 24 people die annually from being hit by champagne corks, usually in the face at weddings.",
     "Coconuts kill more people than sharks! Watch out for that … coconut! 150 people die each year from being hit on the coconut by a coconut.",
-    "Messy handwriting kills more people than sharks! Messy handwriting of doctors, leads to 7, 000 deaths annually. Due to wrong prescriptions.",
+    "Messy handwriting kills more people than sharks! Messy writing of doctors, leads to 7, 000 deaths annually. Due to wrong prescriptions.",
     "Horse-drawn carriages kill more people than sharks. 80 people die each year because of it so skip it and give the poor horse a break too!",
     "Falling TVs kill more people than sharks! 41 people are killed annually merely by TVs tipping over onto them so maybe read a book instead.",
     "The biggest shark is 84 times as large as the smallest. The dwarf lantern is the smallest and the whale shark is the largest.",
@@ -37,5 +37,5 @@ msgs = [
     "The movie Jaws is Responsible For Killing A Colossal Amount of Sharks",
     "Based on fossil scales found, scientists hypothesize sharks first appeared in the ocean around 455 million years ago.",
     "Shark skin feels like sandpaper as it is made up of tiny teeth-like structures called placoid scales, also known as dermal denticles.",
-    "Basking sharks are the world's second largest fish, growing as long as 32 feet and weighing more than five tons."
+    "Basking sharks are the world's second largest fish, growing as long as 32 feet and weighing more than five tons.",
 ]
