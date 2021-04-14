@@ -35,5 +35,6 @@ msgs = [
     "The number of large sharks fell by 50 % along the eastern seaboard of North America in the years following the release of Jaws.",
     "Since the 1990s, protection for great whites has been established in many parts of the world including California, Oz, Nz and S.Africa.",
     "The movie Jaws is Responsible For Killing A Colossal Amount of Sharks",
-    "Based on fossil scales found, scientists hypothesize sharks first appeared in the ocean around 455 million years ago."
+    "Based on fossil scales found, scientists hypothesize sharks first appeared in the ocean around 455 million years ago.",
+    "Shark skin feels like sandpaper as it is made up of tiny teeth-like structures called placoid scales, also known as dermal denticles."
 ]
