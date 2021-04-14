@@ -15,9 +15,6 @@ ACCESS_TOKEN_SECRET = keys['ACCESS_TOKEN_SECRET']
 keywords = ['#sharklover', '#savesharks',
             '#sharkweek', '#sharkdiving', '#ilovesharks']
 random_keyword = random.choice(keywords)
-# keywords = ['#atesthash']
-
-
 random_msg = random.choice(msgs)
 
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
@@ -66,6 +63,9 @@ for tweet in tweepy.Cursor(api.search, q=random_keyword, lang="en").items(5):
 
         tweet.retweet()
         print('Retweet published successfully.')
+
+        tweet.favorite()
+        print('Favorited the tweet')
 
         time.sleep(60)
 
