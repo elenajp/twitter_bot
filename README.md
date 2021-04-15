@@ -2,7 +2,7 @@
 
 <img src="https://pbs.twimg.com/profile_images/1380477331702157315/zk6MLuqV_400x400.jpg" width="100" height="100">
 
-> Helping to clear the bad reputation of sharks. Protection NOT Fear.
+> Helping to clear the bad reputation of sharks. Protection NOT Fear 🦈
 
 ---
 
