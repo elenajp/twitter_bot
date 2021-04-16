@@ -13,7 +13,7 @@ ACCESS_TOKEN = keys['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = keys['ACCESS_TOKEN_SECRET']
 
 keywords = ['#sharklover', '#savesharks',
-            '#sharkweek', '#sharkdiving', '#ilovesharks']
+            '#sharkweek', '#sharkdiving', '#ilovesharks', '#protectsharks']
 random_keyword = random.choice(keywords)
 random_msg = random.choice(msgs)
 
@@ -43,13 +43,12 @@ mentions = api.mentions_timeline(last_Seen_id, tweet_mode='extended')
 
 for mention in reversed(mentions):
     try:
-        for i in keywords:
-            if i in mention.full_text:
-                last_Seen_id = mention.id
-                store_id(last_Seen_id, FILE)
-                api.update_status('@'+mention.user.screen_name +
-                                  f' {random_msg}', mention.id)
-                print('Replied to @' + mention.user.screen_name)
+        if '#savesharks' in mention.full_text:
+            last_Seen_id = mention.id
+            store_id(last_Seen_id, FILE)
+            api.update_status('@'+mention.user.screen_name +
+                              f' {random_msg}', mention.id)
+            print('Replied to @' + mention.user.screen_name)
 
     except tweepy.TweepError as error:
         print('\nError. Retweet not successful. Reason: ')
