@@ -10,6 +10,20 @@
 
 - [Description](#description)
 - [How To Use](#how-to-use)
-- [References](#references)
-- [License](#license)
+- [Dependencies](#dependencies)
 - [Author Info](#author-info)
+
+---
+
+## Description
+
+This is a Twitter bot created using Tweepy to access the Twitter API. The Python script replies to any tweets that mentions the user name @FriendlySharky along with the hashtag '#savesharks', then a reply with random shark fact will be replied. Also the Twitter bot will retweet tweets with specific hashtags that are stored in a list.
+
+#### Technologies
+
+- Python3
+- Docker
+
+[Back To The Top](#read-me-template)
+
+---
