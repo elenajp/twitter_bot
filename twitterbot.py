@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import random
 import time
+from urllib.parse import urlencode
 
 import tweepy
 
@@ -12,9 +13,9 @@ API_SECRET_KEY = keys['API_SECRET_KEY']
 ACCESS_TOKEN = keys['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = keys['ACCESS_TOKEN_SECRET']
 
-keywords = ['#sharklover', '#savesharks',
-            '#sharkweek', '#sharkdiving', '#ilovesharks', '#protectsharks']
-random_keyword = random.choice(keywords)
+keywords = ['#sharklover', '#savesharks', '#sharkdiving',
+            '#ilovesharks', '#protectsharks', '#saveoursharks']
+
 random_msg = random.choice(msgs)
 
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
@@ -55,22 +56,23 @@ for mention in reversed(mentions):
         print(error.reason)
 
 
-for tweet in tweepy.Cursor(api.search, q=random_keyword, lang="en").items(5):
-    try:
-        print('\nRetweet Bot found tweet by @' +
-              tweet.user.screen_name + '. ' + 'Attempting to retweet.')
+for word in keywords:
+    for tweet in tweepy.Cursor(api.search, q=word, lang="en").items(5):
+        try:
+            print('\nRetweet Bot found tweet by @' +
+                  tweet.user.screen_name + '. ' + 'Attempting to retweet.')
 
-        tweet.retweet()
-        print('Retweet published successfully.')
+            tweet.retweet()
+            print('Retweet published successfully.')
 
-        tweet.favorite()
-        print('Favorited the tweet')
+            tweet.favorite()
+            print('Favorited the tweet')
 
-        time.sleep(60)
+            time.sleep(60)
 
-    except tweepy.TweepError as error:
-        print('\nError. Retweet not successful. Reason: ')
-        print(error.reason)
+        except tweepy.TweepError as error:
+            print('\nError. Retweet not successful. Reason: ')
+            print(error.reason)
 
-    except StopIteration:
-        break
+        except StopIteration:
+            break
