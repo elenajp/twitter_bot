@@ -27,3 +27,10 @@ This is a Twitter bot created using Tweepy to access the Twitter API. The Python
 [Back To The Top](#read-me-template)
 
 ---
+
+## Author Info
+
+- Twitter - [@Perez84Elena](https://twitter.com/Perez84Elena)
+- Linkedin - [Elena Perez](https://www.linkedin.com/in/elena-perez-2a5890192/)
+
+[Back To The Top](#read-me-template)
