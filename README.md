@@ -10,7 +10,7 @@
 
 - [Description](#description)
 - [How To Use](#how-to-use)
-- [Dependencies](#dependencies)
+- [Technologies](#technologies)
 - [Author Info](#author-info)
 
 ---
@@ -25,6 +25,16 @@ This is a Twitter bot created using Tweepy to access the Twitter API. The Python
 - Docker
 
 [Back To The Top](#read-me-template)
+
+---
+
+## How To Use
+
+💠 This Python Twitter bot uses the Tweepy Module which can be installed by:
+pip install tweepy (or pip3).
+
+💠 Create an account on https://apps.twitter.com/ and you can either use your current Twitter
+account for the bot or create a new account.
 
 ---
 
