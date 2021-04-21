@@ -30,14 +30,22 @@ This is a Twitter bot created using Tweepy to access the Twitter API. The Python
 
 ## How To Use
 
-💠 This Python Twitter bot uses the Tweepy Module which can be installed by:
+💠 Packages in this project were installed using pip. If you are using Python3 be sure to use pip3.
+💠 This Python Twitter bot uses the Tweepy package which can be installed by:
 
 ```python
 pip install tweepy
 ```
 
+💠 If you wish to use the other packages used in the project, use:
+
+```python
+pip freeze > requirements.txt
+```
+
 💠 Create an account on https://apps.twitter.com/ and you can either use your current Twitter
 account for the bot or create a new account.
+💠 Remember to store your tokens in a secure place or you will have to create new ones.
 
 ---
 
