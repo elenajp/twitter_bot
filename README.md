@@ -45,6 +45,7 @@ pip3 freeze > requirements.txt
 
 💠 Create an account on https://apps.twitter.com/ and you can either use your current Twitter
 account for the bot or create a new account.
+
 💠 Remember to store your tokens in a secure place or you will have to create new ones.
 
 ---
