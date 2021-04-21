@@ -24,7 +24,7 @@ This is a Twitter bot created using Tweepy to access the Twitter API. The Python
 - Python3
 - Docker
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#the-friendly-shark-twitter-bot)
 
 ---
 
@@ -55,4 +55,4 @@ account for the bot or create a new account.
 - Twitter - [@Perez84Elena](https://twitter.com/Perez84Elena)
 - Linkedin - [Elena Perez](https://www.linkedin.com/in/elena-perez-2a5890192/)
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#the-friendly-shark-twitter-bot)
