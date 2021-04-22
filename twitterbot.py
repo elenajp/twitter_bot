@@ -68,7 +68,7 @@ for word in keywords:
             tweet.favorite()
             print('Favorited the tweet')
 
-            time.sleep(60)
+            time.sleep(20)
 
         except tweepy.TweepError as error:
             print('\nError. Retweet not successful. Reason: ')
