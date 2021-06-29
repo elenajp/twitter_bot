@@ -14,7 +14,7 @@ ACCESS_TOKEN = keys['ACCESS_TOKEN']
 ACCESS_TOKEN_SECRET = keys['ACCESS_TOKEN_SECRET']
 
 keywords = ['#sharklover', '#savesharks', '#sharkdiving',
-            '#ilovesharks', '#protectsharks', '#saveoursharks']
+            '#ilovesharks', '#protectsharks', '#saveoursharks',  '#sharkawareness']
 
 random_msg = random.choice(msgs)
 
