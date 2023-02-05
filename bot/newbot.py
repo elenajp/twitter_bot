@@ -24,7 +24,6 @@ def retweet_comment_and_like():
     for tweet in Cursor(
         api.search_tweets, q=hashtags, lang="en", tweet_mode="extended"
     ).items(2):
-        # if tweet.lang == "en":
         try:
             if not tweet.retweeted:
                 api.retweet(tweet.id)
