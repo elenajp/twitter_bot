@@ -26,6 +26,7 @@ def retweet_comment_and_like():
         api.search_tweets, q=hashtags, lang="en", tweet_mode="extended"
     ).items(2):
         try:
+            # Checks if the tweet has not already been retweeted
             if not tweet.retweeted:
                 api.retweet(tweet.id)
                 tweet.favorite()
@@ -38,101 +39,8 @@ def retweet_comment_and_like():
             print("Error: " + str(error))
 
 
-#############
-# truncated_text = tweet.text[:277] + "..."
-# try:
-#     api.update_status(truncated_text)
-#     print("Retweet successful.")
-# except tweepy.TweepError as error:
-#     print("Error. Retweet not successful. Reason:")
-#     print(error)
-
-
-# def reply_to_mentions():
-#     """Replies to any mentions using chatGPT"""
-#     # Get the latest mention
-#     mentions = api.mentions_timeline()
-#     mention = mentions[0]
-
-#     # Generate the response from OpenAI
-#     try:
-#         response = (
-#             openai.Completion.create(
-#                 engine="text-davinci-002",
-#                 prompt="@" + mention.user.screen_name + " " + mention.text,
-#                 max_tokens=280,
-#                 n=1,
-#                 stop=None,
-#                 temperature=0.5,
-#             )
-#             .get("choices")[0]
-#             .get("text")
-#     )
-
-#     if len(response) > 280:
-#         response = response[:200] + "..."
-#     print("Replied to: " + mention.user.screen_name)
-
-#     # Reply to the mention
-#     api.update_status(
-#         status="@" + mention.user.screen_name + " " + response,
-#         # in_reply_to_status_id=mention.id,
-#         auto_populate_reply_metadata=True,
-#         exclude_reply_user_ids=None,
-#         attachment_url=None,
-#         media_ids=None,
-#         possibly_sensitive=False,
-#         lat=None,
-#         long=None,
-#         place_id=None,
-#         display_coordinates=False,
-#         trim_user=False,
-#         # verify_status_length=True,
-#         # truncate=True,
-#     )
-# except Exception as error:
-#     print("Error: " + str(error))
-
-
-# def generate_reply():
-#     text = mention.text
-#     response = (
-#         openai.Completion.create(
-#             engine="text-davinci-002",
-#             prompt=text,
-#             max_tokens=200,
-#             n=1,
-#             stop=None,
-#             temperature=0.5,
-#         )
-#         .get("choices")[0]
-#         .text
-#     )
-
-#     # return response
-
-#     mentions = api.mentions_timeline()
-#     if len(response) > 280:
-#         response = response[:200] + "..."
-#     print("Replied to: " + mention.user.screen_name)
-
-#     # Reply to each mention
-#     try:
-#         for mention in mentions:
-#             # Get the text of the reply
-#             reply_text = generate_reply(mention)
-
-#             # Reply to the mention
-#             api.update_status(
-#                 status=f"@{mention.user.screen_name} {reply_text}",
-#                 in_reply_to_status_id=mention.id,
-#             )
-#         print("Replied to: " + mention.user.screen_name)
-#     except Exception as error:
-#         print("Error: " + str(error))
-
-
 def reply_to_mentions():
+    """Replies to mentions with a random shark fact mentioned by chatGPT"""
     # Get the latest mention
     mentions = api.mentions_timeline()
     latest_mention = mentions[0]
@@ -171,7 +79,5 @@ def reply_to_mentions():
             print("Error:", e)
 
 
+retweet_comment_and_like()
 reply_to_mentions()
-# generate_reply()
-# reply_to_mentions()
-# retweet_comment_and_like()
