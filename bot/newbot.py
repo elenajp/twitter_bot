@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import os
-import random
 
 import openai
 import tweepy
