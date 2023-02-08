@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-import random
-import time
-from urllib.parse import urlencode
+import os
 
 import openai
 import tweepy
 from keys import keys
-from messages import msgs
-from tweepy import API
+from tweepy import Cursor
 
 API_KEY = keys["API_KEY"]
 API_SECRET_KEY = keys["API_SECRET_KEY"]
@@ -16,116 +13,73 @@ ACCESS_TOKEN_SECRET = keys["ACCESS_TOKEN_SECRET"]
 
 openai.api_key = keys["OPENAPI_SECRET_KEY"]
 
-random_msg = random.choice(msgs)
-
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
-FILE = "id.txt"
+
+def retweet_comment_and_like():
+    """Retweets Twitter posts containing a specific hashtag, likes the tweet and comments on it too"""
+    hashtags = "#saveoursharks OR #sharkawareness OR #sharklover OR #savesharks OR #sharkdiving OR #ilovesharks OR #protectsharks"
+    # Searches for tweets with a certain hashtag, language and the full text (extended) of the tweet is returned
+    for tweet in Cursor(
+        api.search_tweets, q=hashtags, lang="en", tweet_mode="extended"
+    ).items(2):
+        try:
+            # Checks if the tweet has not already been retweeted, then if not, retweets it
+            if not tweet.retweeted:
+                api.retweet(tweet.id)
+                tweet.favorite()
+                status = api.get_status(tweet.id, tweet_mode="extended")
+                screen_name = status.user.screen_name
+                message = f"@{screen_name} Great tweet! I really enjoyed it."
+                api.update_status(message, in_reply_to_status_id=tweet.id)
+                print("Retweeted tweet: " + tweet.full_text)
+        except Exception as error:
+            print("Error: " + str(error))
 
 
-def retrieve_id(file):
-    f_read = open(file, "r")
-    last_seen_id = int(f_read.read().strip())  # grabs the id in the file
-    f_read.close()
-    return last_seen_id
+def reply_to_mentions():
+    """Replies to mentions with a random shark fact mentioned by chatGPT"""
+    # Get the latest mention
+    mentions = api.mentions_timeline()
+    latest_mention = mentions[0]
+
+    # Use OpenAI to generate a reply to the latest mention
+    model_engine = "text-davinci-002"
+    # prompt = "Reply to @" + latest_mention.user.screen_name + ": " + latest_mention.text
+    prompt = "Mention a shark fact"
+
+    # Load the ids of replied tweets from a file
+    replied_tweet_ids = set()
+    if os.path.exists("ids.txt"):
+        with open("replied_tweet_ids.txt", "r") as f:
+            for line in f:
+                replied_tweet_ids.add(int(line.strip()))
+
+    if latest_mention.id not in replied_tweet_ids:
+        try:
+            completion = openai.Completion.create(
+                engine=model_engine,
+                prompt=prompt,
+                max_tokens=160,
+                n=1,
+                stop=None,
+                temperature=0.5,
+            )
+
+            reply = completion.choices[0].text
+            reply = f"Thanks @{latest_mention.user.screen_name}, let me throw a shark fact at ya: {reply}"
+            api.create_favorite(latest_mention.id)
+
+            # Post the reply
+            api.update_status(status=reply, in_reply_to_status_id=latest_mention.id)
+            print("Successfully replied with:", reply)
+            # Add the tweet id to the set of replied tweet ids
+            replied_tweet_ids.add(latest_mention.id)
+        except Exception as e:
+            print("Error:", e)
 
 
-def store_id(id, file):
-    f_write = open(file, "w")
-    f_write.write(str(id))
-    f_write.close()
-    return
-
-
-# last_Seen_id = retrieve_id(FILE)
-# mentions = api.mentions_timeline(last_Seen_id, tweet_mode="extended")
-
-# for mention in reversed(mentions):
-#     try:
-#         if "#savesharks" in mention.full_text:
-#             last_Seen_id = mention.id
-#             store_id(last_Seen_id, FILE)
-#             api.update_status(
-#                 "@" + mention.user.screen_name + f" {random_msg}", mention.id
-#             )
-#             print("Replied to @" + mention.user.screen_name)
-
-#     except tweepy.TweepError as error:
-#         print("\nError. Retweet not successful. Reason: ")
-#         print(error.reason)
-
-############################################################################################
-# the code below is the original and working
-# for word in keywords:
-#     for tweet in tweepy.Cursor(api.search_tweets, q=word, lang="en").items(5):
-#         try:
-#             print(
-#                 "\nRetweet Bot found tweet by @"
-#                 + tweet.user.screen_name
-#                 + ". "
-#                 + "Attempting to retweet."
-#             )
-
-#             tweet.retweet()
-#             print("Retweet published successfully.")
-
-#             tweet.favorite()
-#             print("Favorited the tweet")
-
-#             time.sleep(60)
-
-#         except Exception as error:
-#             print("\nError. Retweet not successful. Reason: ")
-#             print("Error: " + str(error))
-
-############################################################################################
-
-
-try:
-    # Find a tweet with certain hashtags to retweet
-    tweet = api.search_tweets(
-        "#sharklover OR #savesharks OR #sharkdiving OR #ilovesharks OR #protectsharks OR #saveoursharks OR #sharkawareness"
-    )[0]
-
-    # Use OpenAI to generate a quote for the tweet
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt="Retweeting: " + tweet.text,
-        max_tokens=1000,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
-    comment = response["choices"][0]["text"].strip()
-
-    # if len(tweet.text) > 280:
-    #     tweet_text = tweet.text[:277] + "..."
-    # else:
-    #     tweet_text = tweet.text
-    truncated_text = tweet.text[:277] + "..."
-    try:
-        api.update_status(truncated_text)
-        print("Retweet successful.")
-    except tweepy.TweepError as error:
-        print("Error. Retweet not successful. Reason:")
-        print(error)
-
-    # Quote the tweet and retweet it
-    # api.update_status("Retweeting: " + tweet.text + "\n\nQuote: " + quote, tweet.id)
-    # api.update_status(
-    #     "Retweeting: " + tweet.text + "\n\nQuote: " + comment,
-    #     in_reply_to_status_id=tweet.id,
-    # )
-    api.update_status(
-        "@" + tweet.user.screen_name + " " + comment, in_reply_to_status_id=tweet.id
-    )
-# except tweepy.TweepyError as error:
-#     print("Error: " + str(error.reason))
-# except Exception as error:
-#     print("Error: " + str(error))
-
-except Exception as error:
-    print("\nError. Retweet not successful. Reason: ")
-    print("Error: " + str(error))
+retweet_comment_and_like()
+reply_to_mentions()
