@@ -3,7 +3,7 @@ import os
 
 import openai
 import tweepy
-from keys import keys
+from keys import keys  # Don't need this line in AWS Lambda
 from tweepy import Cursor
 
 API_KEY = keys["API_KEY"]
