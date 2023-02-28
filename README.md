@@ -17,12 +17,14 @@
 
 ## Description
 
-This is a Twitter bot created using Tweepy to access the Twitter API. The Python script replies to any tweets that mentions the user name @FriendlySharky along with the hashtag '#savesharks', then a reply with random shark fact will be replied. Also the Twitter bot will retweet tweets with specific hashtags that are stored in a list.
+This is a Twitter bot created using Tweepy to access the Twitter API. It retweets, comments and likes tweets with a certain hashtag. It also replies to mentions with a fun shark fact using chatGPT (openai).
 
-#### Technologies
+## Technologies
 
 - Python3
-- Docker
+- AWS Lambda
+- AWS S3
+- AWS EventBridge
 
 [Back To The Top](#the-friendly-shark-twitter-bot)
 
@@ -30,7 +32,7 @@ This is a Twitter bot created using Tweepy to access the Twitter API. The Python
 
 ## How To Use
 
-💠 Packages in this project were installed using pip. If you are using Python2 use pip without 3.
+💠 Packages in this project were installed using pip. 
 💠 This Python Twitter bot uses the Tweepy package which can be installed by:
 
 ```python
@@ -45,8 +47,6 @@ pip3 freeze > requirements.txt
 
 💠 Create an account on https://apps.twitter.com/ and you can either use your current Twitter
 account for the bot or create a new account.
-
-💠 Remember to store your tokens in a secure place or you will have to create new ones.
 
 ---
 
