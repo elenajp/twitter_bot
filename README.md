@@ -1,4 +1,4 @@
-# The Friendly Shark Twitter Bot
+# The Friendly Shark Twitter Bot @FriendlySharky
 
 <img src="https://pbs.twimg.com/profile_images/1380477331702157315/zk6MLuqV_400x400.jpg" width="100" height="100">
 
